@@ -1,0 +1,20 @@
+{
+  "name": "libtuvero",
+  "version": "1.6.0-dev",
+  "description": "libtuvero",
+  "main": "dist/index.js",
+  "author": {
+    "name": "Erik E. Lorenz"
+  },
+  "scripts": {
+    "build-ts": "tsc",
+    "watch-ts": "tsc -w",
+    "lint": "tslint -c tslint.json -p tsconfig.json",
+    "test": "node dist/test.js"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "tslint": "^5.8.0",
+    "typescript": "^2.6.2"
+  }
+}
