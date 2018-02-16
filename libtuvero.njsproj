@@ -34,12 +34,19 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="src\actions.ts" />
+    <Compile Include="src\random\random.ts">
+      <SubType>Code</SubType>
+    </Compile>
     <Content Include="tslint.json" />
     <Content Include="tsconfig.json" />
     <Content Include="package.json" />
     <Content Include="README.md" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="src\test.ts" />
+    <TypeScriptCompile Include="src\types\mersenne.d.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="src\state\actions.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
