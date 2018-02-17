@@ -6,6 +6,13 @@ stages:
 
 image: node:9
 
+pretest:lint:
+  stage: pretest
+  script:
+    - npm install
+    - npm run lint
+  dependencies: []
+
 pretest:src:
   stage: pretest
   script:
