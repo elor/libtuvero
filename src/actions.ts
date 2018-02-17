@@ -1,6 +1,6 @@
 import * as state from "./state/actions";
 
-let actions = {
+const actions = {
   state: state.actions
 };
 
