@@ -1,4 +1,4 @@
-﻿import { rand } from "mersenne";
+import { rand } from "mersenne";
 import { range as _range } from "lodash";
 
 function int(min: number, max: number = 0): number {
@@ -6,7 +6,7 @@ function int(min: number, max: number = 0): number {
     return int(max, min);
   }
 
-  if (max == min) {
+  if (min + 1 >= max) {
     return min;
   }
 
