@@ -1,9 +1,17 @@
 stages:
+  - pretest
   - build
   - test
   - deploy
 
 image: node:9
+
+pretest:src:
+  stage: pretest
+  script:
+    - npm install
+    - npm run test-src
+  dependencies: []
 
 build:
   stage: build
@@ -14,13 +22,6 @@ build:
     paths:
       - dist/
     expire_in: 1 day
-
-test:src:
-  stage: test
-  script:
-    - npm install
-    - npm run test-src
-  dependencies: []
 
 test:dist:
   stage: test
