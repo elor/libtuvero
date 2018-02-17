@@ -1,30 +1,18 @@
 stages:
-  - install
   - build
   - test
   - deploy
 
 image: node:9
 
-install:
-  stage: install
-  script:
-    - npm install
-  artifacts:
-    paths:
-      - node_modules/
-    expire_in: 1 day
-
 build:
   stage: build
   script:
+    - npm install
     - npm run build
-  dependencies:
-    - install
   artifacts:
     paths:
       - dest/
-      - node_modules/
     expire_in: 1 day
 
 test:src:
@@ -32,13 +20,11 @@ test:src:
   script:
     - npm install
     - npm run test-src
-  dependencies:
-    - install
 
 test:dest:
   stage: test
   script:
-    - npm install
     - npm run test-src
+    - npm install
   dependencies:
     - build
