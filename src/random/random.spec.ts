@@ -2,9 +2,9 @@ import * as chai from "chai";
 
 import random from "./random";
 
-describe("Test Test", function () {
-  describe("random()", function () {
-    it('should equal 0 for random(0)', function () {
+describe("random/random.ts", () => {
+  describe("int()", () => {
+    it("int(0) equals 0", () => {
       chai.assert.equal(random.int(0), 0);
     });
   });
