@@ -6,6 +6,10 @@ function int(min: number, max: number = 0): number {
     return int(max, min);
   }
 
+  if (max == min) {
+    return min;
+  }
+
   return min + rand(max - min);
 }
 
@@ -27,7 +31,7 @@ function shuffle<T>(array: T[]): T[] {
   return range(array.length).map(i => array[i]);
 }
 
-export {
+export default {
   int,
   pick,
   pluck,
