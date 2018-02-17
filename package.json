@@ -13,14 +13,14 @@
     "test": "node dist/test.js"
   },
   "dependencies": {
-    "@types/lodash": "^4.14.103",
+    "@types/lodash": "^4.14.104",
     "@types/mathjs": "0.0.37",
     "lodash": "4.17.5",
     "mathjs": "3.20.1",
     "mersenne": "0.0.4"
   },
   "devDependencies": {
-    "tslint": "^5.8.0",
-    "typescript": "^2.6.2"
+    "tslint": "^5.9.1",
+    "typescript": "^2.7.2"
   }
 }
