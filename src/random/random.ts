@@ -12,7 +12,12 @@ function pick(array: number[]): number {
   return array[rand(array.length)];
 }
 
+function pluck(array: number[]): number {
+  return array.splice(rand(array.length), 1)[0];
+}
+
 export {
   int,
   pick,
+  pluck,
 };
