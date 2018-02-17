@@ -9,7 +9,7 @@
   "scripts": {
     "build": "tsc",
     "build-watch": "tsc -w",
-    "lint": "tslint -c tslint.json -p tsconfig.json",
+    "lint": "tslint --config tslint.json --project tsconfig.json",
     "test": "npm run test-src && npm run test-dist",
     "test-src": "mocha -r node_modules/ts-node/register src/**/*.spec.ts",
     "test-dist": "nyc mocha dist/**/*.spec.js",
