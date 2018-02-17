@@ -24,7 +24,7 @@ test:src:
 test:dest:
   stage: test
   script:
-    - npm run test-src
     - npm install
+    - npm run test-dest
   dependencies:
     - build
