@@ -14,11 +14,11 @@ function int(min: number, max: number = 0): number {
 }
 
 function pick<T>(array: T[]): T {
-  return array[rand(array.length)];
+  return array[int(array.length)];
 }
 
 function pluck<T>(array: T[]): T {
-  return array.splice(rand(array.length), 1)[0];
+  return array.splice(int(array.length), 1)[0];
 }
 
 function range(from: number, to?: number): number[] {
