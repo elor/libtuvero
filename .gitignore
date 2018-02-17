@@ -4,3 +4,4 @@
 /obj/
 *.user
 *.log
+/package-lock.json
