@@ -10,7 +10,9 @@
     "build-ts": "tsc",
     "watch-ts": "tsc -w",
     "lint": "tslint -c tslint.json -p tsconfig.json",
-    "test": "mocha --require ts-node/register src/**/*.spec.ts"
+    "test": "npm run test-src && npm run test-dest",
+    "test-src": "mocha -r node_modules/ts-node/register src/**/*.spec.ts",
+    "test-dest": "nyc mocha dist/**/*.spec.js"
   },
   "dependencies": {
     "@types/lodash": "4.14.104",
