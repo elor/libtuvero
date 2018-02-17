@@ -22,7 +22,7 @@ function pluck<T>(array: T[]): T {
 }
 
 function range(from: number, to?: number): number[] {
-  let indices = _range(from, to);
+  const indices = _range(from, to);
 
   return indices.slice().map(i => pluck(indices));
 }
