@@ -37,6 +37,8 @@
     <Compile Include="src\random\random.ts">
       <SubType>Code</SubType>
     </Compile>
+    <Content Include=".gitignore" />
+    <Content Include=".gitlab-ci.yml" />
     <Content Include="tslint.json" />
     <Content Include="tsconfig.json" />
     <Content Include="package.json" />
