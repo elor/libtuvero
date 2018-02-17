@@ -12,7 +12,7 @@ build:
     - npm run build
   artifacts:
     paths:
-      - dest/
+      - dist/
     expire_in: 1 day
 
 test:src:
@@ -22,10 +22,10 @@ test:src:
     - npm run test-src
   dependencies: []
 
-test:dest:
+test:dist:
   stage: test
   script:
     - npm install
-    - npm run test-dest
+    - npm run test-dist
   dependencies:
     - build

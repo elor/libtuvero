@@ -10,9 +10,9 @@
     "build": "tsc",
     "build-watch": "tsc -w",
     "lint": "tslint -c tslint.json -p tsconfig.json",
-    "test": "npm run test-src && npm run test-dest",
+    "test": "npm run test-src && npm run test-dist",
     "test-src": "mocha -r node_modules/ts-node/register src/**/*.spec.ts",
-    "test-dest": "nyc mocha dist/**/*.spec.js",
+    "test-dist": "nyc mocha dist/**/*.spec.js",
     "test-watch": "nyc mocha -w dist/**/*.spec.js"
   },
   "dependencies": {
