@@ -1,5 +1,5 @@
 ﻿import { rand } from "mersenne";
-import { range } from "lodash";
+import { range as _range } from "lodash";
 
 function int(min: number, max: number = 0): number {
   if (max < min) {
@@ -17,20 +17,20 @@ function pluck<T>(array: T[]): T {
   return array.splice(rand(array.length), 1)[0];
 }
 
-function shuffle(array: number[]): number[] {
-  let indices = range(array.length);
-  let randomIndices = [];
+function range(from: number, to?: number): number[] {
+  let indices = _range(from, to);
 
-  while (indices.length) {
-    randomIndices.push(pluck(indices));
-  }
+  return indices.slice().map(i => pluck(indices));
+}
 
-  return randomIndices.map(i => array[i]);
+function shuffle<T>(array: T[]): T[] {
+  return range(array.length).map(i => array[i]);
 }
 
 export {
   int,
   pick,
   pluck,
+  range,
   shuffle
 };
