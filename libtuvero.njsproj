@@ -43,7 +43,7 @@
     <Content Include="README.md" />
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="src\test.ts" />
+    <TypeScriptCompile Include="src\random\random.spec.ts" />
     <TypeScriptCompile Include="src\types\mersenne.d.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
