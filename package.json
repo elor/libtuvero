@@ -15,8 +15,7 @@
     "lint-fix": "tslint --config tslint.json --project tsconfig.json --fix",
     "test": "mocha dist/**/*.spec.js",
     "test-src": "mocha -r node_modules/ts-node/register src/**/*.spec.ts",
-    "coverage": "nyc npm test",
-    "coverage-report": "nyc report -r text-summary"
+    "coverage": "nyc npm test"
   },
   "dependencies": {
     "@types/lodash": "4.14.104",
@@ -44,6 +43,11 @@
       "dist/**/*.spec.js",
       "dist/bundle*.js",
       "dist/index.js"
-    ]
+    ],
+    "lines": 50,
+    "statements": 40,
+    "functions": 10,
+    "branches": 80,
+    "check-coverage": true
   }
 }
