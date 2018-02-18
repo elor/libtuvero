@@ -14,7 +14,7 @@ describe("random/random.ts", () => {
     });
 
     it("stays in range", () => {
-      range(1, 1000).forEach(max => chai.assert.include(range(max), random.int(max), `max=${max}`));
+      range(1, 100).forEach(max => expect(range(max)).to.include(random.int(max), `max=${max}`));
     });
 
     it("swaps max and min if necessary", () => {
