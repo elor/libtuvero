@@ -25,7 +25,38 @@ describe("random/random.ts", () => {
 
     it("is min if max=min", () => {
       range(10, 200).forEach(min => expect(random.int(min, min)).to.equal(min));
+    });
+  });
 
+  describe("pick()", () => {
+    it("throws a range error on empty arrays", () => {
+      expect(() => random.pick([])).to.throw(RangeError);
+    });
 
+    it("really picks an element from the array", () => {
+      const array = random.range(10, 100).map(i => i * i);
+
+      range(100).forEach(() => expect(array).to.contain(random.pick(array)));
+    });
+
+    it("does not alter the array", () => {
+      const array = range(10);
+      const original = array.slice();
+
+      range(100).forEach(() => random.pick(array));
+
+      expect(array).to.deep.equal(original);
+    });
+
+    it("picks every element eventually", () => {
+      const array = range(10, 20);
+      const copy: number[] = [];
+
+      range(array.length ** 2)
+        .map(() => random.pick(array))
+        .forEach(i => copy[i - 10] = i);
+
+      expect(array).to.deep.equal(copy);
+    });
   });
 });
