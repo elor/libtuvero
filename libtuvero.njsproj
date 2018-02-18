@@ -16,7 +16,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>dee5a37d-0472-46ee-84c0-4bb13571cfdd</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>src\actions.ts</StartupFile>
+    <StartupFile>src\index.ts</StartupFile>
     <StartWebBrowser>False</StartWebBrowser>
     <SearchPath>
     </SearchPath>
@@ -33,12 +33,14 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="src\actions.ts" />
+    <Compile Include="src\index.ts" />
     <Compile Include="src\random\random.ts">
       <SubType>Code</SubType>
     </Compile>
     <Content Include=".gitignore" />
     <Content Include=".gitlab-ci.yml" />
+    <Content Include="test\index.html" />
+    <Content Include="webpack.config.js" />
     <Content Include="tslint.json" />
     <Content Include="tsconfig.json" />
     <Content Include="package.json" />
@@ -68,6 +70,7 @@
     <Folder Include="src\system\" />
     <Folder Include="src\teams\" />
     <Folder Include="src\types\" />
+    <Folder Include="test\" />
   </ItemGroup>
   <!-- Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them. -->
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="False" />
