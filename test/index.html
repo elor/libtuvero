@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>libtuvero Test</title>
+  <script src="../dist/bundle.js"></script>
+  <script>
+    const numbers = tuvero.random.range(200000);
+    const string = numbers.join('<br>')
+    console.log(numbers);
+
+    window.onload = function () {
+      let container = document.getElementById("random");
+      container.innerHTML = numbers.length;
+    };
+  </script>
+</head>
+<body>
+  <h1>libtuvero Test</h1>
+  <div id="random"></div>
+</body>
+</html>
