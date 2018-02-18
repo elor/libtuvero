@@ -7,7 +7,10 @@ describe("random/random.ts", () => {
   describe("int()", () => {
     it("int(0) equals 0", () => {
       range(100).forEach(() => expect(random.int(0)).to.equal(0));
+    });
 
+    it("int(1) always equals 0", () => {
+      range(1, 100).forEach(() => expect(random.int(1)).to.equal(0));
     });
 
     it("stays in range", () => {
