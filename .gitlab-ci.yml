@@ -31,10 +31,10 @@ build:
       - dist/
     expire_in: 1 day
 
-test:dist:
+test:coverage:
   stage: test
   script:
     - npm install
-    - npm run test-dist
+    - npm run coverage
   dependencies:
     - build
