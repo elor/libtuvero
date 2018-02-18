@@ -45,6 +45,9 @@ function pick<T>(array: T[]): T {
  * @returns a random element from the array.
  */
 function pluck<T>(array: T[]): T {
+  if (array.length === 0) {
+    throw new RangeError();
+  }
   return array.splice(int(array.length), 1)[0];
 }
 
