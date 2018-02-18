@@ -128,7 +128,7 @@ describe("random/random.ts", () => {
 
     it("preserves single-element arrays", () => {
       expect(random.shuffle([5])).to.deep.equal([5]);
-    })
+    });
 
     it("preserves array length", () => {
       repeat(length => expect(random.shuffle(range(length))).to.be.of.length(length));
