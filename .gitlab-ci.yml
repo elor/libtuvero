@@ -11,9 +11,11 @@ build:
     - npm install
     - npm run build
     - npm run bundle
+    - npm doc
   artifacts:
     paths:
       - dist/
+      - doc/
     expire_in: 1 day
 
 test:
