@@ -7,6 +7,8 @@ const ITERATIONS = 100;
 type mapCall = (v: number, i: number, a: number[]) => any;
 const repeat = (fn: mapCall, start?: number) => range(start || 0, ITERATIONS).map(fn);
 
+const numerically = (a: number, b: number) => a - b;
+
 describe("random/random.ts", () => {
 
   describe("int()", () => {
@@ -43,7 +45,7 @@ describe("random/random.ts", () => {
     });
 
     it("to contain every index once", () => {
-      expect(random.range(ITERATIONS).sort((a, b) => a - b)).to.deep.equal(range(ITERATIONS));
+      expect(random.range(ITERATIONS).sort(numerically)).to.deep.equal(range(ITERATIONS));
     });
 
     it("to not be sorted", () => {
@@ -102,7 +104,7 @@ describe("random/random.ts", () => {
 
       expect(array.length).to.equal(original.length - 1);
 
-      expect(array.concat(plucked).sort()).to.deep.equal(original.sort());
+      expect(array.concat(plucked).sort(numerically)).to.deep.equal(original.sort(numerically));
     });
 
     it("plucks every element eventually", () => {
