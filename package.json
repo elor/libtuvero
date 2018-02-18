@@ -19,13 +19,13 @@
     "doc": "typedoc --out doc/ src/"
   },
   "dependencies": {
-    "@types/lodash": "4.14.104",
-    "@types/mathjs": "0.0.37",
     "lodash": "4.17.5",
     "mathjs": "3.20.1",
     "mersenne": "0.0.4"
   },
   "devDependencies": {
+    "@types/lodash": "4.14.104",
+    "@types/mathjs": "0.0.37",
     "@types/chai": "4.1.2",
     "@types/mocha": "2.2.48",
     "chai": "4.1.2",
