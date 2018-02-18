@@ -24,7 +24,7 @@ function pluck<T>(array: T[]): T {
 function range(from: number, to?: number): number[] {
   const indices = _range(from, to);
 
-  return indices.slice().map(i => pluck(indices));
+  return indices.slice().map(() => pluck(indices));
 }
 
 function shuffle<T>(array: T[]): T[] {
