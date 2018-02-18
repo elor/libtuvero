@@ -120,4 +120,31 @@ describe("random/random.ts", () => {
       expect(copy).to.deep.equal(original);
     });
   });
+
+  describe("shuffle()", () => {
+    it("works with empty arrays", () => {
+      expect(random.shuffle([])).to.deep.equal([]);
+    });
+
+    it("preserves single-element arrays", () => {
+      expect(random.shuffle([5])).to.deep.equal([5]);
+    })
+
+    it("preserves array length", () => {
+      repeat(length => expect(random.shuffle(range(length))).to.be.of.length(length));
+    });
+
+    it("returns a copy of the array", () => {
+      expect(random.shuffle([])).to.not.equal([]);
+      expect(random.shuffle([6])).to.not.equal([6]);
+    });
+
+    it("contains the original elements", () => {
+      repeat(length => expect(random.shuffle(range(length)).sort(numerically)).to.deep.equal(range(length)), 10);
+    });
+
+    it("returns an unsorted array", () => {
+      repeat(length => expect(random.shuffle(range(length))).to.not.deep.equal(range(length)), 10);
+    });
+  });
 });
