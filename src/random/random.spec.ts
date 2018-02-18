@@ -19,5 +19,11 @@ describe("random/random.ts", () => {
       range(100).forEach(() => chai.assert.isBelow(random.int(min, max), min));
       range(100).forEach(() => chai.assert.isAtLeast(random.int(min, max), max));
     });
+
+    it("is min if max=min", () => {
+      const min = 50;
+
+      range(100).forEach(() => chai.assert.equal(random.int(min, min), min));
+
   });
 });
