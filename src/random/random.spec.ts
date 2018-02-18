@@ -3,28 +3,51 @@ import { range } from "lodash";
 
 import random from "./random";
 
+const ITERATIONS = 100;
+type mapCall = (v: number, i: number, a: number[]) => any;
+const repeat = (fn: mapCall, start?: number) => range(start || 0, ITERATIONS).map(fn);
+
 describe("random/random.ts", () => {
+
   describe("int()", () => {
     it("int(0) equals 0", () => {
-      range(100).forEach(() => expect(random.int(0)).to.equal(0));
+      repeat(() => expect(random.int(0)).to.equal(0));
     });
 
     it("int(1) always equals 0", () => {
-      range(1, 100).forEach(() => expect(random.int(1)).to.equal(0));
+      repeat(() => expect(random.int(1)).to.equal(0), 1);
     });
 
     it("stays in range", () => {
-      range(1, 100).forEach(max => expect(range(max)).to.include(random.int(max), `max=${max}`));
+      repeat(max => expect(range(max)).to.include(random.int(max), `max=${max}`), 1);
     });
 
     it("swaps max and min if necessary", () => {
       const min = 0;
       const max = 10;
-      range(100).forEach(() => expect(range(min, max)).to.contain(random.int(max, min)));
+      repeat(() => expect(range(min, max)).to.contain(random.int(max, min)));
     });
 
     it("is min if max=min", () => {
-      range(10, 200).forEach(min => expect(random.int(min, min)).to.equal(min));
+      repeat(min => expect(random.int(min, min)).to.equal(min), 10);
+    });
+  });
+
+  describe("range()", () => {
+    it("is empty for range(0)", () => {
+      expect(random.range(0)).to.be.empty;
+    });
+
+    it("range(1) to contain only 0", () => {
+      expect(random.range(1)).to.deep.equal([0]);
+    });
+
+    it("to contain every index once", () => {
+      expect(random.range(ITERATIONS).sort((a, b) => a - b)).to.deep.equal(range(ITERATIONS));
+    });
+
+    it("to not be sorted", () => {
+      expect(random.range(ITERATIONS)).to.not.deep.equal(range(ITERATIONS));
     });
   });
 
@@ -34,16 +57,16 @@ describe("random/random.ts", () => {
     });
 
     it("really picks an element from the array", () => {
-      const array = random.range(10, 100).map(i => i * i);
+      const array = range(10, 20).map(i => i * i);
 
-      range(100).forEach(() => expect(array).to.contain(random.pick(array)));
+      repeat(() => expect(array).to.contain(random.pick(array)));
     });
 
     it("does not alter the array", () => {
       const array = range(10);
       const original = array.slice();
 
-      range(100).forEach(() => random.pick(array));
+      repeat(() => random.pick(array));
 
       expect(array).to.deep.equal(original);
     });
@@ -66,9 +89,9 @@ describe("random/random.ts", () => {
     });
 
     it("really plucks an element from the array", () => {
-      const array = random.range(10, 100).map(i => i * i);
+      const array = random.range(10, 20).map(i => i * i);
 
-      range(10).forEach(() => expect(array).to.not.contain(random.pluck(array)));
+      range(array.length - 1).forEach(() => expect(array).to.not.contain(random.pluck(array)));
     });
 
     it("alters the array", () => {
