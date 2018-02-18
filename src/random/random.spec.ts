@@ -29,7 +29,7 @@ describe("random/random.ts", () => {
   });
 
   describe("pick()", () => {
-    it("throws a range error on empty arrays", () => {
+    it("throws RangeError on empty arrays", () => {
       expect(() => random.pick([])).to.throw(RangeError);
     });
 
@@ -56,7 +56,43 @@ describe("random/random.ts", () => {
         .map(() => random.pick(array))
         .forEach(i => copy[i - 10] = i);
 
-      expect(array).to.deep.equal(copy);
+      expect(copy).to.deep.equal(array);
+    });
+  });
+
+  describe("pluck()", () => {
+    it("throws RangeError on empty arrays", () => {
+      expect(() => random.pluck([])).to.throw(RangeError);
+    });
+
+    it("really plucks an element from the array", () => {
+      const array = random.range(10, 100).map(i => i * i);
+
+      range(10).forEach(() => expect(array).to.not.contain(random.pluck(array)));
+    });
+
+    it("alters the array", () => {
+      const array = range(10);
+      const original = array.slice();
+
+      const plucked = random.pluck(array);
+
+      expect(array.length).to.equal(original.length - 1);
+
+      expect(array.concat(plucked).sort()).to.deep.equal(original.sort());
+    });
+
+    it("plucks every element eventually", () => {
+      const array = range(10, 20);
+      const original = array.slice();
+      const copy: number[] = [];
+
+      range(array.length)
+        .map(() => random.pluck(array))
+        .forEach(i => copy[i - 10] = i);
+
+      expect(array).to.be.empty;
+      expect(copy).to.deep.equal(original);
     });
   });
 });
