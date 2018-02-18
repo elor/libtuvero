@@ -1,20 +1,20 @@
 stages:
-  - pretest
+  - pre
   - build
   - test
   - deploy
 
 image: node:9
 
-pretest:lint:
-  stage: pretest
+pre:lint:
+  stage: pre
   script:
     - npm install
     - npm run lint
   dependencies: []
 
-pretest:src:
-  stage: pretest
+pre:src:
+  stage: pre
   script:
     - npm install
     - npm run test-src
