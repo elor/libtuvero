@@ -37,6 +37,12 @@
     "webpack": "3.11.0"
   },
   "nyc": {
-    "exclude": "**/*.spec.js"
+    "all": true,
+    "include": "dist/**/*.js",
+    "exclude": [
+      "dist/**/*.spec.js",
+      "dist/bundle*.js",
+      "dist/index.js"
+    ]
   }
 }
