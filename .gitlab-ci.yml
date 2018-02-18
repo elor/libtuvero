@@ -1,24 +1,9 @@
 stages:
-  - pre
   - build
   - test
   - deploy
 
 image: node:9
-
-pre:lint:
-  stage: pre
-  script:
-    - npm install
-    - npm run lint
-  dependencies: []
-
-pre:src:
-  stage: pre
-  script:
-    - npm install
-    - npm run test-src
-  dependencies: []
 
 build:
   stage: build
@@ -31,10 +16,12 @@ build:
       - dist/
     expire_in: 1 day
 
-test:coverage:
+test:
   stage: test
   script:
     - npm install
+    - npm run lint
+    - npm run test-src
     - npm run coverage
   dependencies:
     - build
