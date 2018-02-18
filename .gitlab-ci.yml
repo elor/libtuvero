@@ -1,6 +1,5 @@
 stages:
   - build
-  - test
   - deploy
 
 image: node:9
@@ -9,7 +8,10 @@ build:
   stage: build
   script:
     - npm install
+    - npm run lint
+    - npm run test-src
     - npm run build
+    - npm run coverage
     - npm run bundle
     - npm run doc
   artifacts:
@@ -17,13 +19,3 @@ build:
       - dist/
       - doc/
     expire_in: 1 day
-
-test:
-  stage: test
-  script:
-    - npm install
-    - npm run lint
-    - npm run test-src
-    - npm run coverage
-  dependencies:
-    - build
