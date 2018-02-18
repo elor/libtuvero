@@ -1,4 +1,4 @@
-import * as chai from "chai";
+import { expect } from "chai";
 import { range } from "lodash";
 
 import random from "./random";
@@ -6,7 +6,8 @@ import random from "./random";
 describe("random/random.ts", () => {
   describe("int()", () => {
     it("int(0) equals 0", () => {
-      chai.assert.equal(random.int(0), 0);
+      range(100).forEach(() => expect(random.int(0)).to.equal(0));
+
     });
 
     it("stays in range", () => {
@@ -14,16 +15,14 @@ describe("random/random.ts", () => {
     });
 
     it("swaps max and min if necessary", () => {
-      const min = 10;
-      const max = 0;
-      range(100).forEach(() => chai.assert.isBelow(random.int(min, max), min));
-      range(100).forEach(() => chai.assert.isAtLeast(random.int(min, max), max));
+      const min = 0;
+      const max = 10;
+      range(100).forEach(() => expect(range(min, max)).to.contain(random.int(max, min)));
     });
 
     it("is min if max=min", () => {
-      const min = 50;
+      range(10, 200).forEach(min => expect(random.int(min, min)).to.equal(min));
 
-      range(100).forEach(() => chai.assert.equal(random.int(min, min), min));
 
   });
 });
