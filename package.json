@@ -15,7 +15,6 @@
     "lint-fix": "tslint --config tslint.json --project tsconfig.json --fix",
     "test": "mocha dist/**/*.spec.js",
     "test-src": "mocha -r node_modules/ts-node/register src/**/*.spec.ts",
-    "test-watch": "mocha -r node_modules/ts-node/register src/**/*.spec.ts --watch",
     "coverage": "nyc npm test"
   },
   "dependencies": {
