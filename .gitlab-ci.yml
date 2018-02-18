@@ -25,6 +25,7 @@ build:
   script:
     - npm install
     - npm run build
+    - npm run bundle
   artifacts:
     paths:
       - dist/
