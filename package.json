@@ -1,7 +1,7 @@
 {
-  "name": "libtuvero",
+  "name": "tuvero",
   "version": "1.6.0-dev",
-  "description": "libtuvero",
+  "description": "Tuvero Tournament Software Library",
   "main": "./dist/index",
   "author": {
     "name": "Erik E. Lorenz"
