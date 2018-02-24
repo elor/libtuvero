@@ -19,6 +19,7 @@
     "doc": "typedoc --out doc/ src/"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "lodash": "4.17.5",
     "mathjs": "3.20.1",
     "mersenne": "0.0.4"

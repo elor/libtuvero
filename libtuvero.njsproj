@@ -63,6 +63,7 @@
     <Folder Include="src\draw\" />
     <Folder Include="src\matches\" />
     <Folder Include="src\math\" />
+    <Folder Include="src\online\" />
     <Folder Include="src\points\" />
     <Folder Include="src\random\" />
     <Folder Include="src\ranking\" />
