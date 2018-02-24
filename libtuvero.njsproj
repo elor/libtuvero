@@ -50,13 +50,10 @@
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Include="src\random\random.spec.ts" />
+    <TypeScriptCompile Include="src\config.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="src\types\mersenne.d.ts">
-      <SubType>Code</SubType>
-    </TypeScriptCompile>
-    <TypeScriptCompile Include="src\state\actions.ts">
-      <SubType>Code</SubType>
-    </TypeScriptCompile>
-    <TypeScriptCompile Include="src\teams\schema.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
   </ItemGroup>
