@@ -44,7 +44,7 @@
     "include": "dist/**/*.js",
     "exclude": [
       "dist/**/*.spec.js",
-      "dist/bundle*.js",
+      "dist/*.bundle*.js",
       "dist/index.js"
     ],
     "lines": 80,
