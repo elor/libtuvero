@@ -1,4 +1,4 @@
-﻿import axios from "axios";
+import axios from "axios";
 import config from "../config";
 import * as _ from "lodash";
 
@@ -6,13 +6,13 @@ type API_Config = {
   baseUrl: string,
   defaultPath: string,
   timeout: number
-}
+};
 
 type API_Options = {
   baseUrl?: string,
   defaultPath?: string,
   timeout?: number
-}
+};
 
 class Server {
   token: string;
@@ -65,6 +65,6 @@ class Server {
   delete(path: string = "/", timeout: number = this.config.timeout): Promise<Object> {
     return axios.delete(`${this.config.baseUrl}/${path}`, { timeout });
   }
-};
+}
 
 export default Server;
