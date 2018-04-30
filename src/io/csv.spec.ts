@@ -30,6 +30,18 @@ describe("io/csv.ts", () => {
       expect(csv.read(",;,;")).to.deep.equal([["", "", "", "", ""]]);
     });
 
+    it("parses multiple lines", () => {
+      expect(csv.read("Firstline\nSecondline")).to.deep.equal([
+        ["Firstline"],
+        ["Secondline"]
+      ]);
+
+      expect(csv.read("1, A\r\n2;B")).to.deep.equal([
+        ["1", "A"],
+        ["2", "B"]
+      ])
+    });
+
     it("parses escaped fields", () => {
       expect(
         csv.read(
