@@ -3,15 +3,15 @@ import config from "../config";
 import * as _ from "lodash";
 
 type API_Config = {
-  baseUrl: string,
-  defaultPath: string,
-  timeout: number
+  baseUrl: string;
+  defaultPath: string;
+  timeout: number;
 };
 
 type API_Options = {
-  baseUrl?: string,
-  defaultPath?: string,
-  timeout?: number
+  baseUrl?: string;
+  defaultPath?: string;
+  timeout?: number;
 };
 
 class Server {
@@ -30,7 +30,10 @@ class Server {
    * @param path The path. Defaults to "/".
    * @param timeout Optional. Timeout in milliseconds.
    */
-  get(path: string = "/", timeout: number = this.config.timeout): Promise<Object> {
+  get(
+    path: string = "/",
+    timeout: number = this.config.timeout
+  ): Promise<Object> {
     return axios.get(`${this.config.baseUrl}/${path}`, { timeout });
   }
 
@@ -41,7 +44,11 @@ class Server {
    * @param data A data object to post to the server.
    * @param timeout Optional.
    */
-  post(path: string, data: Object, timeout: number = this.config.timeout): Promise<Object> {
+  post(
+    path: string,
+    data: Object,
+    timeout: number = this.config.timeout
+  ): Promise<Object> {
     return axios.post(`${this.config.baseUrl}/${path}`, data, { timeout });
   }
 
@@ -52,7 +59,11 @@ class Server {
    * @param data The Object to create on the server
    * @param timeout Optional. Timeout in milliseconds.
    */
-  put(path: string, data: Object, timeout: number = this.config.timeout): Promise<Object> {
+  put(
+    path: string,
+    data: Object,
+    timeout: number = this.config.timeout
+  ): Promise<Object> {
     return axios.put(`${this.config.baseUrl}/${path}`, data, { timeout });
   }
 
@@ -62,7 +73,10 @@ class Server {
    * @param path The path
    * @param timeout Optional. Timeout in milliseconds.
    */
-  delete(path: string = "/", timeout: number = this.config.timeout): Promise<Object> {
+  delete(
+    path: string = "/",
+    timeout: number = this.config.timeout
+  ): Promise<Object> {
     return axios.delete(`${this.config.baseUrl}/${path}`, { timeout });
   }
 }
