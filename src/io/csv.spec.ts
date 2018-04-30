@@ -2,7 +2,7 @@ import { expect } from "chai";
 
 import csv from "./csv";
 
-describe("ui/csv.ts", () => {
+describe("io/csv.ts", () => {
   describe("read()", () => {
     it("is empty for read('')", () => {
       expect(csv.read("")).to.have.length(0);
