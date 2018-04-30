@@ -36,10 +36,14 @@ describe("io/csv.ts", () => {
         ["Secondline"]
       ]);
 
-      expect(csv.read("1, A\r\n2;B")).to.deep.equal([
+      expect(csv.read("1, A\r\n2;B")).to.deep.equal([["1", "A"], ["2", "B"]]);
+    });
+
+    it("ignores empty lines", () => {
+      expect(csv.read("\r\n1, A\r\n\r\n2;B")).to.deep.equal([
         ["1", "A"],
         ["2", "B"]
-      ])
+      ]);
     });
 
     it("parses escaped fields", () => {
