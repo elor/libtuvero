@@ -1,11 +1,12 @@
 import { expect } from "chai";
 
-import server from "./server";
+import Server from "./server";
 
 describe("online/server.ts", () => {
   describe("construction", () => {
-    it("empty constructs", () => {
-      expect(new server());
+    it("default construction", () => {
+      expect(new Server());
+      expect(new Server("token123").token).to.equal("token123");
     });
   });
 });
