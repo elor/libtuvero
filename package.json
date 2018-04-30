@@ -14,6 +14,7 @@
     "lint": "tslint --config tslint.json --project tsconfig.json",
     "lint-fix": "tslint --config tslint.json --project tsconfig.json --fix",
     "test": "mocha dist/**/*.spec.js",
+    "test-watch": "mocha dist/**/*.spec.js --watch",
     "test-src": "mocha -r node_modules/ts-node/register src/**/*.spec.ts",
     "coverage": "nyc npm test",
     "doc": "typedoc --out doc/ src/"
