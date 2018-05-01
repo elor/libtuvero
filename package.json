@@ -1,24 +1,29 @@
 {
   "name": "tuvero",
-  "version": "1.6.0-dev-1",
+  "version": "1.6.0-dev",
   "description": "Tuvero Tournament Software Library",
   "main": "./dist/index",
+  "files": [
+    "dist",
+    "doc"
+  ],
   "author": {
     "name": "Erik E. Lorenz"
   },
   "scripts": {
-    "build": "tsc",
+    "all": "npm run lint && npm run test-src && npm run build && npm run coverage && npm run bundle",
     "build-watch": "tsc -w",
-    "bundle": "webpack",
+    "build": "tsc",
     "bundle-watch": "webpack --watch",
-    "lint": "tslint --config tslint.json --project tsconfig.json",
-    "lint-fix": "tslint --config tslint.json --project tsconfig.json --fix",
-    "test": "mocha dist/**/*.spec.js",
-    "test-watch": "mocha dist/**/*.spec.js --watch",
-    "test-src": "mocha -r node_modules/ts-node/register src/**/*.spec.ts",
+    "bundle": "webpack",
     "coverage": "nyc npm test",
     "doc": "typedoc --out doc/ src/",
-    "version": "npm run build && npm run bundle && sed -i -e '/dist/d' .gitignore && git add dist/ .gitignore"
+    "lint-fix": "tslint --config tslint.json --project tsconfig.json --fix",
+    "lint": "tslint --config tslint.json --project tsconfig.json",
+    "test-src": "mocha -r node_modules/ts-node/register src/**/*.spec.ts",
+    "test-watch": "mocha dist/**/*.spec.js --watch",
+    "test": "mocha dist/**/*.spec.js",
+    "version": "npm run all"
   },
   "dependencies": {
     "axios": "^0.18.0",
