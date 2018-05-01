@@ -21,10 +21,10 @@
     "lint-fix": "tslint --config tslint.json --project tsconfig.json --fix",
     "lint": "tslint --config tslint.json --project tsconfig.json",
     "prepublish": "npm run all",
+    "preversion": "npm run all",
     "test-src": "mocha -r node_modules/ts-node/register src/**/*.spec.ts",
     "test-watch": "mocha dist/**/*.spec.js --watch",
-    "test": "mocha dist/**/*.spec.js",
-    "version": "npm run all"
+    "test": "mocha dist/**/*.spec.js"
   },
   "dependencies": {
     "axios": "^0.18.0",
