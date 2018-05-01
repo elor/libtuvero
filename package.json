@@ -17,7 +17,8 @@
     "test-watch": "mocha dist/**/*.spec.js --watch",
     "test-src": "mocha -r node_modules/ts-node/register src/**/*.spec.ts",
     "coverage": "nyc npm test",
-    "doc": "typedoc --out doc/ src/"
+    "doc": "typedoc --out doc/ src/",
+    "version": "npm run build && npm run bundle && sed -i -e '/dist/d' .gitignore && git add dist/ .gitignore"
   },
   "dependencies": {
     "axios": "^0.18.0",
