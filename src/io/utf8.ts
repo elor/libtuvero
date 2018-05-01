@@ -1,4 +1,12 @@
 const internal = {
+  /**
+   * Test if this byte can be a utf8 start byte and return the number of
+   * required utf8 bytes of this code point, including start byte and
+   * continuation bytes.
+   *
+   * @param  {string} character A single byte (character) to read the utf8 signature from
+   * @returns number number of bytes as indicated by the utf8 signature. May be a false positive
+   */
   numutfbytes(character: string): number {
     const code = character.charCodeAt(0);
 
@@ -20,12 +28,23 @@ const internal = {
     return 0;
   },
 
+  /**
+   * Test if this byte can be interpreted as a utf8 continuation byte
+   *
+   * @param  {string} character
+   * @returns boolean
+   */
   isutf8byte(character: string): boolean {
     const code = character.charCodeAt(0);
 
     return code >= 0x80 && code < 0xc0;
   },
 
+  /**
+   * Is the start of the string a utf8 byte sequence encoding a single code point?
+   *
+   * @param  {string} string a string, possibly starting with a utf8 byte sequence
+   */
   isutf8codepoint(string: string) {
     const bytes = internal.numutfbytes(string[0]);
     if (bytes <= 1) {
@@ -44,6 +63,12 @@ const internal = {
     return true;
   },
 
+  /**
+   * Convert a utf8 byte sequence to a single unicode point
+   *
+   * @param  {string} characters a complete utf8 byte sequence
+   * @returns string a single-character string containing the encoded unicode character
+   */
   latin2utf8symbol(characters: string): string {
     const bytes = internal.numutfbytes(characters[0]);
     let symbol = characters.charCodeAt(0);
@@ -78,6 +103,13 @@ const internal = {
 };
 
 const utf8 = {
+  /**
+   * Convert an arbitrary character sequence from ascii (latin2) to utf8.
+   *
+   * @param  {string} string
+   * @returns string The decoded string, or a copy of the original string if
+   * no utf8 encoding is found.
+   */
   latin2utf8(string: string): string {
     let symbolindex, ret, symbol;
     ret = [];
