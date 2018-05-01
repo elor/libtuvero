@@ -1,4 +1,4 @@
 import random from "./random/random";
-import csv from "./io/csv";
+import io from "./io";
 
-export { random, csv };
+export { random, io };
