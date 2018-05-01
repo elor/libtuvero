@@ -11,7 +11,7 @@
     "name": "Erik E. Lorenz"
   },
   "scripts": {
-    "all": "npm run lint && npm run test-src && npm run build && npm run coverage && npm run bundle",
+    "all": "npm run lint && npm run test-src && npm run build && npm run coverage && npm run doc && npm run bundle",
     "build-watch": "tsc -w",
     "build": "tsc",
     "bundle-watch": "webpack --watch",
