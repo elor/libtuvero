@@ -11,10 +11,10 @@ const internal = {
         return 3;
       case code >= 0xf0 && code < 0xf8:
         return 4;
-      case code >= 0xf8 && code < 0xfc:
-        return 5;
-      case code >= 0xfc && code < 0xfe:
-        return 6;
+      // case code >= 0xf8 && code < 0xfc:
+      //   return 5;
+      // case code >= 0xfc && code < 0xfe:
+      //   return 6;
     }
 
     return 0;
@@ -49,8 +49,6 @@ const internal = {
     let symbol = characters.charCodeAt(0);
 
     switch (bytes) {
-      case 1:
-        return characters[0];
       case 2:
         symbol = symbol ^ 0xc0;
         break;
@@ -60,12 +58,12 @@ const internal = {
       case 4:
         symbol = symbol ^ 0xf0;
         break;
-      case 5:
-        symbol = symbol ^ 0xf8;
-        break;
-      case 6:
-        symbol = symbol ^ 0xfc;
-        break;
+      // case 5:
+      //   symbol = symbol ^ 0xf8;
+      //   break;
+      // case 6:
+      //   symbol = symbol ^ 0xfc;
+      //   break;
       default:
         return characters[0];
     }
