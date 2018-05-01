@@ -60,9 +60,9 @@ describe("io/unicode.ts", () => {
         const ascii = code_to_utf8(point / divisor)
           .map(num => String.fromCharCode(num))
           .join("");
-        const utf8 = String.fromCharCode(point / divisor);
+        const unicode = String.fromCharCode(point / divisor);
 
-        expect(utf8.latin2utf8(ascii)).to.equal(utf8);
+        expect(utf8.latin2utf8(ascii)).to.equal(unicode);
       });
     });
   });
