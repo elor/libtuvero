@@ -77,7 +77,7 @@ const internal = {
   }
 };
 
-const unicode = {
+const utf8 = {
   latin2utf8(string: string): string {
     let symbolindex, ret, symbol;
     ret = [];
@@ -99,4 +99,4 @@ const unicode = {
   }
 };
 
-export default unicode;
+export default utf8;

@@ -1,7 +1,7 @@
 import { expect } from "chai";
 import { range } from "lodash";
 
-import unicode from "./unicode";
+import utf8 from "./utf8";
 
 function code_to_utf8(code: number): number[] {
   const buffer = [];
@@ -26,9 +26,9 @@ function code_to_utf8(code: number): number[] {
 
 describe("io/unicode.ts", () => {
   it("preserves empty and whitespace strings", () => {
-    expect(unicode.latin2utf8("")).to.equal("");
-    expect(unicode.latin2utf8("  \t ")).to.equal("  \t ");
-    expect(unicode.latin2utf8("  \r\n\t\r\n ")).to.equal("  \r\n\t\r\n ");
+    expect(utf8.latin2utf8("")).to.equal("");
+    expect(utf8.latin2utf8("  \t ")).to.equal("  \t ");
+    expect(utf8.latin2utf8("  \r\n\t\r\n ")).to.equal("  \r\n\t\r\n ");
   });
 
   it("preserves ascii strings", () => {
@@ -36,20 +36,20 @@ describe("io/unicode.ts", () => {
       .map(dec => String.fromCharCode(dec))
       .join("\t");
 
-    expect(unicode.latin2utf8(ascii_chars)).to.equal(ascii_chars);
+    expect(utf8.latin2utf8(ascii_chars)).to.equal(ascii_chars);
   });
 
   it("preserves native javascript code points", () => {
     const umlauts = "öäüÖÄÜß";
-    expect(unicode.latin2utf8(umlauts)).to.equal(umlauts);
+    expect(utf8.latin2utf8(umlauts)).to.equal(umlauts);
   });
 
   it("converts pure utf-8", () => {
-    expect(unicode.latin2utf8("Ã¤Ã¶Ã¼ÃÃÃÃ")).to.equal("äöüÄÖÜß");
+    expect(utf8.latin2utf8("Ã¤Ã¶Ã¼ÃÃÃÃ")).to.equal("äöüÄÖÜß");
   });
 
   it("converts mixed utf-8", () => {
-    expect(unicode.latin2utf8("ÃtheriÃ¶l FuÃlÃ¤ufig BÃ¶ttcher")).to.equal(
+    expect(utf8.latin2utf8("ÃtheriÃ¶l FuÃlÃ¤ufig BÃ¶ttcher")).to.equal(
       "Ätheriöl Fußläufig Böttcher"
     );
   });
@@ -62,7 +62,7 @@ describe("io/unicode.ts", () => {
           .join("");
         const utf8 = String.fromCharCode(point / divisor);
 
-        expect(unicode.latin2utf8(ascii)).to.equal(utf8);
+        expect(utf8.latin2utf8(ascii)).to.equal(utf8);
       });
     });
   });
