@@ -52,7 +52,8 @@
     "include": "dist/**/*.js",
     "exclude": [
       "dist/**/*.spec.js",
-      "dist/*.js"
+      "dist/*.js",
+      "dist/**/index.js"
     ],
     "lines": 80,
     "statements": 80,
