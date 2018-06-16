@@ -46,6 +46,8 @@ const decoded_dpv_masters = [
     Teamnummer: "1"
   }
 ];
+const excel_tournament_name =
+  "Turniereinschreibungen Stand: 06.04.2018 - DPV-Masters Edingen-Neckarhausen";
 
 const one_player_teams_csv = `Teamnummer;Name1;Vorname1;LizNr1;SpielerID1;Verein1;Pseudonym;RLpunkteTeam;Setzposition;Gesetzt;Anmeldender Verein
 1;Schorr;Thomas;10-001-150;0;BC Saarlouis;;0;;Nein;
@@ -283,6 +285,15 @@ describe("io/dpv.ts", () => {
       expect(dpv.import.csv(one_player_teams_csv)).to.deep.equal(
         one_player_teams_data
       );
+    });
+
+    it("imports CSV tournament name", () => {
+      expect(
+        dpv.import.csv_tournament_name(excel_verbose_dpv_masters)
+      ).to.equal(excel_tournament_name);
+
+      expect(dpv.import.csv_tournament_name(excel_exported_dpv_masters)).to.be
+        .undefined;
     });
 
     it("handles varying line lengths gracefully", () => {

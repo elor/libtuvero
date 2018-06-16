@@ -46,8 +46,16 @@ function is_empty_team(team: dpv_registration): boolean {
   );
 }
 
-function has_name_header(csv_fields: string[][]): boolean {
-  return csv_fields.length >= 3 && is_empty_array(csv_fields[0].slice(1));
+function get_name_header(csv_fields: string[][]): string | undefined {
+  if (
+    csv_fields.length >= 2 &&
+    csv_fields[0].length > 1 &&
+    !!csv_fields[0][0] &&
+    is_empty_array(csv_fields[0].slice(1))
+  ) {
+    return csv_fields[0][0];
+  }
+  return undefined;
 }
 
 function field_object_to_players(team: { [id: string]: string }): dpv_player[] {
@@ -92,7 +100,7 @@ const dpv = {
     csv(string: string): dpv_registration[] {
       const csv_fields = csv.read(string).filter(line => !is_empty_array(line));
 
-      if (has_name_header(csv_fields)) {
+      if (get_name_header(csv_fields)) {
         csv_fields.shift();
       }
 
@@ -102,6 +110,11 @@ const dpv = {
         .map(fields => zipObject(field_names, fields))
         .map(field_object_to_registration)
         .filter(team => !is_empty_team(team));
+    },
+    csv_tournament_name(string: string): string | undefined {
+      const csv_fields = csv.read(string).filter(line => !is_empty_array(line));
+
+      return get_name_header(csv_fields);
     }
   }
 };
