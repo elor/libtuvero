@@ -1,6 +1,6 @@
 {
   "name": "tuvero",
-  "version": "1.7.1",
+  "version": "1.7.2",
   "description": "Tuvero Tournament Software Library",
   "main": "./dist/index",
   "files": [
