@@ -166,6 +166,41 @@ const player_defaults_2_data = [
   }
 ];
 
+const shotgun_lines = `Teamnummer;Anmeldender Verein
+1
+2;1.CPC
+3;LPC;Tuvero`;
+
+const shotgun_data = [
+  {
+    "Anmeldender Verein": "",
+    Gesetzt: "",
+    Pseudonym: "",
+    RLpunkteTeam: "",
+    Setzposition: "",
+    Spieler: [],
+    Teamnummer: "1"
+  },
+  {
+    "Anmeldender Verein": "1.CPC",
+    Gesetzt: "",
+    Pseudonym: "",
+    RLpunkteTeam: "",
+    Setzposition: "",
+    Spieler: [],
+    Teamnummer: "2"
+  },
+  {
+    "Anmeldender Verein": "LPC",
+    Gesetzt: "",
+    Pseudonym: "",
+    RLpunkteTeam: "",
+    Setzposition: "",
+    Spieler: [],
+    Teamnummer: "3"
+  }
+];
+
 describe("io/dpv.ts", () => {
   describe("import.csv()", () => {
     it("imports empty files", () => {
@@ -194,6 +229,10 @@ describe("io/dpv.ts", () => {
       expect(dpv.import.csv(excel_exported_dpv_masters)).to.deep.equal(
         decoded_dpv_masters
       );
+    });
+
+    it("handles varying line lengths gracefully", () => {
+      expect(dpv.import.csv(shotgun_lines)).to.deep.equal(shotgun_data);
     });
   });
 });
