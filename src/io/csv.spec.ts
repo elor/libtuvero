@@ -2,6 +2,81 @@ import { expect } from "chai";
 
 import csv from "./csv";
 
+const excel_exported_dpv_masters = `Teamnummer;Name1;Vorname1;LizNr1;SpielerID1;Verein1;Name2;Vorname2;LizNr2;SpielerID2;Verein2;Name3;Vorname3;LizNr3;SpielerID3;Verein3;Pseudonym;RLpunkteTeam;Setzposition;Gesetzt;Anmeldender Verein
+1;Schorr;Thomas;10-001-150;0;BC Saarlouis;Kempf;Andreas;10-001-199;0;BC Saarlouis;Schwander;Thomas ;10-001-198;0;BC Saarlouis;;0;;Nein;
+;;;;;;;;;;;;;;;;;;;;`;
+const decoded_dpv_masters = [
+  [
+    "Teamnummer",
+    "Name1",
+    "Vorname1",
+    "LizNr1",
+    "SpielerID1",
+    "Verein1",
+    "Name2",
+    "Vorname2",
+    "LizNr2",
+    "SpielerID2",
+    "Verein2",
+    "Name3",
+    "Vorname3",
+    "LizNr3",
+    "SpielerID3",
+    "Verein3",
+    "Pseudonym",
+    "RLpunkteTeam",
+    "Setzposition",
+    "Gesetzt",
+    "Anmeldender Verein"
+  ],
+  [
+    "1",
+    "Schorr",
+    "Thomas",
+    "10-001-150",
+    "0",
+    "BC Saarlouis",
+    "Kempf",
+    "Andreas",
+    "10-001-199",
+    "0",
+    "BC Saarlouis",
+    "Schwander",
+    "Thomas",
+    "10-001-198",
+    "0",
+    "BC Saarlouis",
+    "",
+    "0",
+    "",
+    "Nein",
+    ""
+  ],
+  [
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+  ]
+];
+
 describe("io/csv.ts", () => {
   describe("read()", () => {
     it("is empty for read('')", () => {
@@ -82,6 +157,12 @@ describe("io/csv.ts", () => {
       expect(csv.read("unescaped; unescaped with spaces")).to.deep.equal([
         ["unescaped", "unescaped with spaces"]
       ]);
+    });
+
+    it("imports Excel-exported CSV", () => {
+      expect(csv.read(excel_exported_dpv_masters)).to.deep.equal(
+        decoded_dpv_masters
+      );
     });
   });
 });
