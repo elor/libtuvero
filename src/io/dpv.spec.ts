@@ -5,6 +5,11 @@ import dpv from "./dpv";
 const excel_exported_dpv_masters = `Teamnummer;Name1;Vorname1;LizNr1;SpielerID1;Verein1;Name2;Vorname2;LizNr2;SpielerID2;Verein2;Name3;Vorname3;LizNr3;SpielerID3;Verein3;Pseudonym;RLpunkteTeam;Setzposition;Gesetzt;Anmeldender Verein
 1;Schorr;Thomas;10-001-150;0;BC Saarlouis;Kempf;Andreas;10-001-199;0;BC Saarlouis;Schwander;Thomas ;10-001-198;0;BC Saarlouis;;0;;Nein;
 ;;;;;;;;;;;;;;;;;;;;`;
+const excel_verbose_dpv_masters = `Turniereinschreibungen Stand: 06.04.2018 - DPV-Masters Edingen-Neckarhausen,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,
+Teamnummer,Name1,Vorname1,LizNr1,SpielerID1,Verein1,Name2,Vorname2,LizNr2,SpielerID2,Verein2,Name3,Vorname3,LizNr3,SpielerID3,Verein3,Pseudonym,RLpunkteTeam,Setzposition,Gesetzt,Anmeldender Verein
+1,Schorr,Thomas,10-001-150,0,BC Saarlouis,Kempf,Andreas,10-001-199,0,BC Saarlouis,Schwander,Thomas ,10-001-198,0,BC Saarlouis,,0,,Nein,
+,,,,,,,,,,,,,,,,,,,,`;
 const decoded_dpv_masters = [
   {
     "Anmeldender Verein": "",
@@ -270,6 +275,9 @@ describe("io/dpv.ts", () => {
 
     it("imports Reference CSV", () => {
       expect(dpv.import.csv(excel_exported_dpv_masters)).to.deep.equal(
+        decoded_dpv_masters
+      );
+      expect(dpv.import.csv(excel_verbose_dpv_masters)).to.deep.equal(
         decoded_dpv_masters
       );
       expect(dpv.import.csv(one_player_teams_csv)).to.deep.equal(

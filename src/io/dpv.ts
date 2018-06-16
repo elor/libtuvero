@@ -20,6 +20,10 @@ type dpv_registration = {
   "Spieler": dpv_player[];
 };
 
+function is_empty_array(array: string[]): boolean {
+  return array.every(element => !element);
+}
+
 function is_empty_player(player: dpv_player): boolean {
   return (
     !player.Name &&
@@ -40,6 +44,10 @@ function is_empty_team(team: dpv_registration): boolean {
     !team["Anmeldender Verein"] &&
     team.Spieler.every(is_empty_player)
   );
+}
+
+function has_name_header(csv_fields: string[][]): boolean {
+  return csv_fields.length >= 3 && is_empty_array(csv_fields[0].slice(1));
 }
 
 function field_object_to_players(team: { [id: string]: string }): dpv_player[] {
@@ -82,7 +90,13 @@ const dpv = {
    */
   import: {
     csv(string: string): dpv_registration[] {
-      const [field_names, ...team_fields] = csv.read(string);
+      const csv_fields = csv.read(string).filter(line => !is_empty_array(line));
+
+      if (has_name_header(csv_fields)) {
+        csv_fields.shift();
+      }
+
+      const [field_names, ...team_fields] = csv_fields;
 
       return team_fields
         .map(fields => zipObject(field_names, fields))
