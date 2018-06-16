@@ -42,8 +42,154 @@ const decoded_dpv_masters = [
   }
 ];
 
+const partial_csv = `Teamnummer;Pseudonym
+1;Tuvero
+2;Pyxidea`;
+const partial_data = [
+  {
+    "Anmeldender Verein": "",
+    Gesetzt: "",
+    Pseudonym: "Tuvero",
+    RLpunkteTeam: "",
+    Setzposition: "",
+    Spieler: [],
+    Teamnummer: "1"
+  },
+  {
+    "Anmeldender Verein": "",
+    Gesetzt: "",
+    Pseudonym: "Pyxidea",
+    RLpunkteTeam: "",
+    Setzposition: "",
+    Spieler: [],
+    Teamnummer: "2"
+  }
+];
+
+const ignored_fields_csv = `Teamnummer;Ignored
+5;Blablabla
+;Ignored for missing important fields`;
+
+const ignored_data = [
+  {
+    "Anmeldender Verein": "",
+    Gesetzt: "",
+    Pseudonym: "",
+    RLpunkteTeam: "",
+    Setzposition: "",
+    Spieler: [],
+    Teamnummer: "5"
+  }
+];
+
+const player_defaults_1_csv = `Vorname1;Name3
+Erik;Arndt
+
+Josi;Lorenz`;
+
+const player_defaults_1_data = [
+  {
+    "Anmeldender Verein": "",
+    Gesetzt: "",
+    Pseudonym: "",
+    RLpunkteTeam: "",
+    Setzposition: "",
+    Spieler: [
+      {
+        LizNr: "",
+        Name: "",
+        SpielerID: "",
+        Verein: "",
+        Vorname: "Erik",
+        importID: 1
+      },
+      {
+        LizNr: "",
+        Name: "Arndt",
+        SpielerID: "",
+        Verein: "",
+        Vorname: "",
+        importID: 3
+      }
+    ],
+    Teamnummer: ""
+  },
+  {
+    "Anmeldender Verein": "",
+    Gesetzt: "",
+    Pseudonym: "",
+    RLpunkteTeam: "",
+    Setzposition: "",
+    Spieler: [
+      {
+        LizNr: "",
+        Name: "",
+        SpielerID: "",
+        Verein: "",
+        Vorname: "Josi",
+        importID: 1
+      },
+      {
+        LizNr: "",
+        Name: "Lorenz",
+        SpielerID: "",
+        Verein: "",
+        Vorname: "",
+        importID: 3
+      }
+    ],
+    Teamnummer: ""
+  }
+];
+
+const player_defaults_2_csv = `LizNr1
+10-100-123`;
+
+const player_defaults_2_data = [
+  {
+    "Anmeldender Verein": "",
+    Gesetzt: "",
+    Pseudonym: "",
+    RLpunkteTeam: "",
+    Setzposition: "",
+    Spieler: [
+      {
+        LizNr: "10-100-123",
+        Name: "",
+        SpielerID: "",
+        Verein: "",
+        Vorname: "",
+        importID: 1
+      }
+    ],
+    Teamnummer: ""
+  }
+];
+
 describe("io/dpv.ts", () => {
   describe("import.csv()", () => {
+    it("imports empty files", () => {
+      expect(dpv.import.csv("")).to.deep.equal([]);
+      expect(dpv.import.csv("\n\n\n")).to.deep.equal([]);
+    });
+
+    it("imports partial csv", () => {
+      expect(dpv.import.csv(partial_csv)).to.deep.equal(partial_data);
+    });
+
+    it("ignores extra fields", () => {
+      expect(dpv.import.csv(ignored_fields_csv)).to.deep.equal(ignored_data);
+    });
+
+    it("has empty strings as player defaults", () => {
+      expect(dpv.import.csv(player_defaults_1_csv)).to.deep.equal(
+        player_defaults_1_data
+      );
+      expect(dpv.import.csv(player_defaults_2_csv)).to.deep.equal(
+        player_defaults_2_data
+      );
+    });
+
     it("imports Reference CSV", () => {
       expect(dpv.import.csv(excel_exported_dpv_masters)).to.deep.equal(
         decoded_dpv_masters

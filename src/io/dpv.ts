@@ -30,6 +30,18 @@ function is_empty_player(player: dpv_player): boolean {
   );
 }
 
+function is_empty_team(team: dpv_registration): boolean {
+  return (
+    !team.Teamnummer &&
+    !team.Pseudonym &&
+    !team.RLpunkteTeam &&
+    !team.Setzposition &&
+    !team.Gesetzt &&
+    !team["Anmeldender Verein"] &&
+    team.Spieler.every(is_empty_player)
+  );
+}
+
 function field_object_to_players(team: { [id: string]: string }): dpv_player[] {
   const IDs = uniq(
     Object.keys(team)
@@ -70,13 +82,12 @@ const dpv = {
    */
   import: {
     csv(string: string): dpv_registration[] {
-      const [field_names, ...team_fields] = csv
-        .read(string)
-        .filter(fields => fields.some(field => field.length > 0));
+      const [field_names, ...team_fields] = csv.read(string);
 
       return team_fields
         .map(fields => zipObject(field_names, fields))
-        .map(field_object_to_registration);
+        .map(field_object_to_registration)
+        .filter(team => !is_empty_team(team));
     }
   }
 };
