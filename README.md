@@ -1,4 +1,5 @@
-﻿# libtuvero - Tuvero tournament management library
+﻿Tuvero - Tuvero tournament management software
+----------------------------------------------
 
 Tuvero is a tournament management software, hosted at <www.tuvero.de>.
 
