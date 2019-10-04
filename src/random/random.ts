@@ -10,7 +10,7 @@ const random = {
    * @param max Optional. Exclusive maximum.
    * @returns a random integer in [min, max) or [max, min), if max < min
    */
-  int(min: number, max: number = 0): number {
+  int (min: number, max: number = 0): number {
     if (min > max) {
       return random.int(max, min);
     }
@@ -30,7 +30,7 @@ const random = {
    * @param array The array to pick from
    * @returns a random element from the array.
    */
-  pick<T>(array: T[]): T {
+  pick<T> (array: T[]): T {
     if (array.length === 0) {
       throw new RangeError();
     }
@@ -45,20 +45,24 @@ const random = {
    * @param array The array to pick and remove from
    * @returns a random element from the array.
    */
-  pluck<T>(array: T[]): T {
+  pluck<T> (array: T[]): T {
     if (array.length === 0) {
       throw new RangeError();
     }
     return array.splice(random.int(array.length), 1)[0];
   },
 
-  range(from: number, to?: number): number[] {
+  range (from: number, to?: number): number[] {
     const indices = _range(from, to);
 
     return indices.slice().map(() => random.pluck(indices));
   },
 
-  shuffle<T>(array: T[]): T[] {
+  range1 (count: number): number[] {
+    return random.range(count).map(n => n + 1);
+  },
+
+  shuffle<T> (array: T[]): T[] {
     return random.range(array.length).map(i => array[i]);
   }
 };

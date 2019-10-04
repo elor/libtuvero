@@ -53,6 +53,24 @@ describe("random/random.ts", () => {
     });
   });
 
+  describe("range1()", () => {
+    it("is empty for range1(0)", () => {
+      expect(random.range1(0)).to.be.empty;
+    });
+
+    it("range1(1) to contain only 1", () => {
+      expect(random.range1(1)).to.deep.equal([1]);
+    });
+
+    it("to contain every index once", () => {
+      expect(random.range1(ITERATIONS).sort(numerically)).to.deep.equal(range(ITERATIONS).map(n => n + 1));
+    });
+
+    it("to not be sorted", () => {
+      expect(random.range1(ITERATIONS)).to.not.deep.equal(range(ITERATIONS).map(n => n + 1));
+    });
+  });
+
   describe("pick()", () => {
     it("throws RangeError on empty arrays", () => {
       expect(() => random.pick([])).to.throw(RangeError);
