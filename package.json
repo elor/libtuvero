@@ -28,21 +28,21 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
-    "lodash": "4.17.5",
+    "lodash": "^4.17.15",
     "mathjs": "3.20.1",
     "mersenne": "0.0.4"
   },
   "devDependencies": {
+    "@types/chai": "4.1.2",
     "@types/lodash": "4.14.104",
     "@types/mathjs": "0.0.37",
-    "@types/chai": "4.1.2",
     "@types/mocha": "2.2.48",
     "chai": "4.1.2",
     "mocha": "5.0.1",
     "nyc": "11.4.1",
     "ts-node": "4.1.0",
     "tslint": "5.9.1",
-    "typedoc": "^0.10.0",
+    "typedoc": "^0.15.0",
     "typescript": "2.7.2",
     "uglifyjs-webpack-plugin": "1.2.0",
     "webpack": "3.11.0"
