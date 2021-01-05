@@ -27,7 +27,7 @@
     "test": "mocha dist/**/*.spec.js"
   },
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "lodash": "^4.17.15",
     "mathjs": "3.20.1",
     "mersenne": "0.0.4"
